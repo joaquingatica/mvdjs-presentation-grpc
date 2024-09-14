@@ -6,3 +6,10 @@ dist
 .remote-assets
 components.d.ts
 .idea
+
+# DirEnv & Environment
+
+.direnv
+.env*
+!.env.sample
+!.envrc
