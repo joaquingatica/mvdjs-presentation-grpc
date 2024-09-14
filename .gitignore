@@ -1,11 +1,33 @@
-node_modules
-.DS_Store
+# Output
 dist
 *.local
 .vite-inspect
 .remote-assets
 components.d.ts
+tmp
+/out-tsc
+tsconfig.tsbuildinfo
+
+# Node.js
+node_modules
+
+# IDEs & editors
 .idea
+.project
+.classpath
+.c9
+*.launch
+.settings
+*.sublime-workspace
+.vscode
+
+# Miscellaneous
+npm-debug.log
+.eslintcache
+
+# System Files
+.DS_Store
+Thumbs.db
 
 # DirEnv & Environment
 
