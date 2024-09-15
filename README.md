@@ -1,11 +1,19 @@
-# Welcome to [Slidev](https://github.com/slidevjs/slidev)!
+# gRPC Presentation - Montevideo JavaScript
 
-To start the slide show:
+## Setup
 
-- `npm install`
-- `npm run dev`
-- visit <http://localhost:3030>
+Run `npm install`
 
-Edit the [slides.md](./slides.md) to see the changes.
+## Usage
 
-Learn more about Slidev at the [documentation](https://sli.dev/).
+- Run `npm run dev`
+- Visit [http://localhost:3030](http://localhost:3030)
+- Edit [slides.md](./slides.md) to see the changes
+
+Slidev reference: [documentation](https://sli.dev/)
+
+## Production build
+
+- Run `npm run build`
+- Check the `./dist` folder for the built static assets
+- Deploy accordingly
