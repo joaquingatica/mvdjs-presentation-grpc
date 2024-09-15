@@ -1,16 +1,8 @@
 ---
 # You can also start simply with 'default'
-theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
+theme: dracula
 # some information about your slides (markdown enabled)
-title: Welcome to Slidev
-info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
+title: gRPC + Node.js
 # apply unocss classes to the current slide
 class: text-center
 # https://sli.dev/features/drawing
@@ -22,628 +14,460 @@ transition: slide-left
 mdc: true
 ---
 
-# Welcome to Slidev
+<h1>
+  <img src="./images/grpc-logo.png" alt="gRPC" style="display: inline; width: 200px;"/> + <img src="./images/nodejs-logo-dark.png" alt="Node.js" style="display: inline; width: 200px;"/>
+</h1>
 
-Presentation slides for developers
+Montevideo JavaScript Meetup - Setiembre 2024
+
+Joaquín Gatica
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
+    <carbon:arrow-right class="inline"/>
   </span>
 </div>
 
-<div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub" title="Open in GitHub"
-    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon-logo-github />
-  </a>
-</div>
-
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
-
 ---
-transition: fade-out
+layout: statement
 ---
 
-# What is Slidev?
+Es decir,
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
-  <br>
-  <br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
-<!--
-Here is another comment.
--->
-
----
-transition: slide-up
-level: 2
----
-
-# Navigation
-
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
-
-## Keyboard Shortcuts
-
-|                                                    |                             |
-| -------------------------------------------------- | --------------------------- |
-| <kbd>right</kbd> / <kbd>space</kbd>                | next animation or slide     |
-| <kbd>left</kbd> / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd>                                      | previous slide              |
-| <kbd>down</kbd>                                    | next slide                  |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
-
----
-layout: two-cols
-layoutClass: gap-16
----
-
-# Table of contents
-
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
-<Toc minDepth="1" maxDepth="1"></Toc>
-```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc v-click minDepth="1" maxDepth="2"></Toc>
+### **¿Vale la pena gRPC en Node.js?**
 
 ---
 layout: image-right
-image: https://cover.sli.dev
+image: ./images/author.jpg
 ---
 
-# Code
+# ¿Quién soy?
 
-Use code snippets and get the highlighting directly, and even types hover!
+**Joaquín Gatica**
 
-```ts {all|5|7|7-8|10|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
+- CTO y Co-Founder en [AnagramDev](https://www.anagram.dev)
+- Technical Architect
 
-import { computed, ref } from "vue";
+<br />
 
-const count = ref(0);
-const doubled = computed(() => count.value * 2);
+<logos-github-icon /> [https://github.com/joaquingatica](https://github.com/joaquingatica)
 
-doubled.value = 2;
-```
+<br/>
 
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="334" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-
-[Learn more](https://sli.dev/features/line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
+<logos-linkedin-icon /> [https://linkedin.com/in/joaquingatica](https://linkedin.com/in/joaquingatica)
 
 ---
-level: 2
+layout: two-cols
+class: text-center
 ---
 
-# Shiki Magic Move
+<br />
+<img src="./images/grpc-logo.png" alt="gRPC" style="display: inline; width: 200px;"/>
+<br />
+<br />
+<br />
+<img src="./images/protobuf-logo-simple.png" alt="gRPC" style="display: inline; width: 150px;"/>
+<br/>
+Protobuf
 
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
+::right::
 
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
-
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: "John Doe",
-  books: [
-    "Vue 2 - Advanced Guide",
-    "Vue 3 - Basic Guide",
-    "Vue 4 - The Mystery",
-  ],
-});
-```
-
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: "John Doe",
-        books: [
-          "Vue 2 - Advanced Guide",
-          "Vue 3 - Basic Guide",
-          "Vue 4 - The Mystery",
-        ],
-      },
-    };
-  },
-};
-```
-
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: "John Doe",
-      books: [
-        "Vue 2 - Advanced Guide",
-        "Vue 3 - Basic Guide",
-        "Vue 4 - The Mystery",
-      ],
-    },
-  }),
-};
-```
-
-Non-code blocks are ignored.
-
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: "John Doe",
-  books: [
-    "Vue 2 - Advanced Guide",
-    "Vue 3 - Basic Guide",
-    "Vue 4 - The Mystery",
-  ],
-};
-</script>
-```
-````
+<br />
+<br />
+<img src="./images/nodejs-logo-dark.png" alt="Node.js" style="display: inline; width: 200px;"/>
+<br />
+<br />
+<br />
+<br />
+<br />
+<img src="./images/typescript-logo.png" alt="Node.js" style="display: inline; width: 100px;"/>
 
 ---
-
-# Components
-
-<div grid="~ cols-2 gap-4">
-<div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
----
-class: px-20
+layout: two-cols
 ---
 
-# Themes
+# ¿Que es gRPC?
 
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
+> Acrónimo recursivo: `gRPC Remote Procedure Calls`
 
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/guide/theme-addon#use-theme) and
-check out the [Awesome Themes Gallery](https://sli.dev/resources/theme-gallery).
-
----
-
-# Clicks Animations
-
-You can add `v-click` to elements to add a click animation.
-
-<div v-click>
-
-This shows up when you click the slide:
-
-```html
-<div v-click>This shows up when you click the slide.</div>
-```
-
-</div>
-
-<br>
+<br />
 
 <v-click>
 
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
+- Framework de ejecución de procedimientos\
+  remotos
+- Multi-plataforma y multi-lenguaje
+- Alta performance
+- Usa HTTP/2 como protocolo de transporte
+- Usa Protocol Buffers (Protobuf) para definición\
+  de schema y encoding/decoding
+- Autenticación mediante TLS y tokens en\
+  metadata
 
-```html
-<span v-mark.underline.orange>inline markers</span>
+</v-click>
+
+::right::
+
+<br />
+
+<v-click>
+Ejemplo de Protobuf gRPC schema:
+
+```protobuf
+syntax = "proto3";
+
+package sample.people.v1;
+
+import "google/protobuf/timestamp.proto";
+
+service PeopleService {
+  rpc GetPerson(GetPersonRequest) returns (GetPersonResponse) {
+    option idempotency_level = NO_SIDE_EFFECTS;
+  }
+}
+message GetPersonRequest {
+  string id = 1;
+}
+message GetPersonResponse {
+  Person person = 1;
+}
+message Person {
+  string id = 1;
+  repeated string names = 2;
+  optional int32 age = 3;
+  google.protobuf.Timestamp created_at = 4;
+}
 ```
 
 </v-click>
 
-<div mt-20 v-click>
+---
+layout: intro
+---
 
-[Learn more](https://sli.dev/guide/animations#click-animation)
+## ¿Vale la pena gRPC en Node.js?
+
+Definamos "vale la pena" cómo **ser similar o mejor a las alternativas** como JSON + GraphQL o REST.
+
+<br />
+
+<v-click>
+
+### ¿Por qué nos cuestionamos?
+
+- Node.js **es second-class citizen** para Protobuf y gRPC
+  - A diferencia de JSON + GraphQL o REST
+  - Baja prioridad en la documentación oficial
+- TypeScript tiene **aún menos relevancia** para gRPC
+  - Muy poca mención en a la documentación oficial
+- Node.js **no es un high-performance runtime**
+  - Para encoding/decoding al menos
+  - A diferencia de C++, Rust o Go
+
+</v-click>
+
+---
+
+# Contexto
+
+Para un cliente existente, nos pidieron crear un servicio nuevo para notificaciones de marketing.
+
+<v-click>
+
+- Exclusivamente Machine-to-Machine
+- No crítico para negocio, pero usado desde otros servicios críticos
+- Alta demanda de requests
+- Bajo riesgo
+
+</v-click>
+
+<br />
+<br />
+
+<v-click><strong>Buena oportunidad para explorar gRPC, evaluando:</strong></v-click>
+
+<br />
+
+<v-click>- Performance </v-click><v-click><twemoji-check-mark-button /></v-click>
+
+<br />
+
+<v-click>- Seguridad / Autenticación </v-click><v-click><twemoji-check-mark-button /></v-click>
+
+<br />
+
+<v-click>- Developer Experience </v-click><v-click><twemoji-white-question-mark /></v-click>
+
+---
+layout: two-cols
+---
+
+## Developer Experience
+
+- Promises - `async`/`await`
+- Tipos primitivos en lugar de clases
+- End-to-end type safety
+- Curva de aprendizaje aceptable
+- Ecosistema de librerías
+
+<br />
+
+<v-click at="3">
+
+### Server
+
+- Schema-first con codegen o code-first
+- Schema linting y check de mejores prácticas
+
+</v-click>
+
+<br />
+
+<v-click at="4">
+
+### Clients
+
+- Schema fetching + codegen
+- GUIs para interactuar con el servicio
+
+</v-click>
+
+::right::
+
+<div v-click="1">
+
+```ts {2,7-11}
+const getPerson = (call: Call): void => {
+  const id = call.request.getId();
+  peopleData.get(id).then((person) => {
+    if (!person) {
+      return callback(new Error(`Person not found for id ${id}`), null);
+    }
+    const response = new messages.GetPersonResponse();
+    response.setName(person.name);
+    response.setAge(person.age);
+    response.setCreatedAt(person.createdAt);
+    callback(null, response);
+  });
+};
+```
+
+</div>
+<div v-click="2">
+vs
+
+```ts {2-4,9}
+const service = {
+  getPerson: async ({
+    id,
+  }: GetPersonRequest): Promise<DeepPartial<GetPersonResponse>> => {
+    const person = await peopleData.get(id);
+    if (!person) {
+      throw new ServerError(Status.NOT_FOUND, `Person not found for id ${id}`);
+    }
+    return { ...person };
+  },
+};
+```
 
 </div>
 
 ---
+layout: two-cols
+---
 
-# Motions
+# Schema + Codegen
 
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
+<br />
 
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
-```
+<v-click>
 
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
+## `ts-proto`
 
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
+<br />
+
+- Utilidad para codegen de TypeScript desde Protobuf schema
+- Configurable para distintos estilos
+
+</v-click>
+
+<br />
+
+<v-click>
+
+## `@bufbuild/buf`
+
+<br />
+
+- Toolchain para Protobuf schemas
+- CLI para codegen con `ts-proto`
+- Linter
+
+</v-click>
+
+::right::
+
+<br />
+<br />
+<br />
+
+<v-click>
+
+<div class="text-center">
+  <img src="./images/buf-logo.svg" alt="Node.js" style="display: inline; width: 100px;"/>
 </div>
 
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
+<br />
 
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
+```yaml
+version: v1
+plugins:
+  - name: ts
+    out: ./src/proto
+    strategy: all
+    path: ../node_modules/ts-proto/protoc-gen-ts_proto
+    opt:
+      - outputServices=nice-grpc
+      - outputServices=generic-definitions
+      - useExactTypes=false
+      - esModuleInterop=true
+```
 
-[Learn more](https://sli.dev/guide/animations.html#motion)
+</v-click>
+
+<br />
+
+<v-click>
+
+```shell
+$ buf generate ./proto # generate TypeScript source
+$ buf build ./proto # build descriptor_set for reflection
+$ buf lint ./proto # lint/check the protobuf schema
+```
+
+</v-click>
+
+---
+layout: two-cols
+---
+
+# gRPC Server & Client
+
+<br />
+
+### `nice-grpc`
+
+> A gRPC library that is nice to you.
+
+<br />
+
+- Librería para gRPC server y clients
+- Basada en `@grpc/grpc-js`
+- Escrita en TypeScript y para TypeScript
+- API para middlewares y ecosistema existente
+- Expone servicios para usar con `ts-proto`
+
+::right::
+
+<br />
+<br />
+<br />
+
+<v-click>
+
+#### Middlewares
+
+- `server-terminator` para cancelación de request en shutdown
+- `client-deadline` para timeout de requests
+- `client-retry` para reintentar procedimientos idempotentes
+
+<br />
+
+</v-click>
+<v-click>
+
+#### Librerías
+
+- `server-health` para healthcheck
+- `server-reflection` para permitir introspección
+- `opentelemetry` para tracing usando OpenTelemetry
+
+</v-click>
+
+---
+layout: image-right
+image: ./images/grpcui-screenshot.png
+---
+
+# gRPC GUI
+
+`gRPC UI`: interfaz web para interactuar con servicios gRPC
+
+<br />
+
+<logos-github-icon /> [fullstorydev/grpcui](https://github.com/fullstorydev/grpcui)
+
+<br />
+<br />
+
+```shell
+$ grpcui -plaintext localhost:50051
+```
+
+---
+layout: intro
+---
+
+# Demo
+
+<logos-github-icon /> https://github.com/joaquingatica/ts-grpc-demo
+
+<br />
+<br />
+
+1. **Repositorio:** overview y ejecutar servidor & cliente
+2. **gRPC UI:** data entry manual
+3. **Server:** extender protobuf schema e implementar procedimiento
+4. **Client:** introspección del schema y llamar a nuevo procedimiento
+
+---
+layout: intro
+---
+
+# Conclusión
+
+gRPC en Node.js **vale la pena** si:
+
+<v-click>- Tanto cliente como servidor son servicios </v-click><v-click><twemoji-check-mark-button /></v-click>
+
+<br />
+
+<v-click>- Se utilizan las librerías correctas </v-click><v-click><twemoji-check-mark-button /></v-click>
+
+<br />
+
+<v-click>- La curva de aprendizaje es aceptable </v-click><v-click><twemoji-check-mark-button /></v-click>
+
+---
+layout: intro
+---
+
+# Q&A
+
+---
+layout: end
+---
+
+# ¡Muchas gracias!
+
+<div>
+
+<br />
+
+<logos-github-icon /> [https://github.com/joaquingatica](https://github.com/joaquingatica)
+
+<br/>
+
+<logos-linkedin-icon /> [https://linkedin.com/in/joaquingatica](https://linkedin.com/in/joaquingatica)
 
 </div>
-
----
-
-# LaTeX
-
-LaTeX is supported out-of-box. Powered by [KaTeX](https://katex.org/).
-
-<div h-3 />
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-
-$$
-{1|3|all}
-\begin{aligned}
-\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \vec{B} &= 0 \\
-\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
-\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
-\end{aligned}
-$$
-
-[Learn more](https://sli.dev/features/latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
-
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
-
----
-foo: bar
-dragPos:
-  square: 691,32,167,_,-16
----
-
-# Draggable Elements
-
-Double-click on the draggable elements to edit their positions.
-
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
-
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <carbon:arrow-up />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
-
----
-src: ./pages/imported-slides.md
-hide: false
----
-
----
-
-# Monaco Editor
-
-Slidev provides built-in Monaco Editor support.
-
-Add `{monaco}` to the code block to turn it into an editor:
-
-```ts {monaco}
-import { ref } from "vue";
-import { emptyArray } from "./external";
-
-const arr = ref(emptyArray(10));
-```
-
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
-
-```ts {monaco-run}
-import { version } from "vue";
-import { emptyArray, sayHello } from "./external";
-
-sayHello();
-console.log(`vue ${version}`);
-console.log(
-  emptyArray<number>(10).reduce(
-    (fib) => [...fib, fib.at(-1)! + fib.at(-2)!],
-    [1, 1],
-  ),
-);
-```
-
----
-layout: center
-class: text-center
----
-
-# Learn More
-
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
-
-<PoweredBySlidev mt-10 />
