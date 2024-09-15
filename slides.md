@@ -454,6 +454,16 @@ layout: intro
 
 # Q&A
 
+<div>
+
+Repositorio: <logos-github-icon /> [joaquingatica/mvdjs-presentation-grpc](https://github.com/joaquingatica/mvdjs-presentation-grpc)
+
+Presentación: <carbon-earth-filled /> [https://mvdjs-presentation-grpc.vercel.app](https://mvdjs-presentation-grpc.vercel.app)
+
+<img src="./images/qr-presentation.png" alt="Código QR presentación" />
+
+</div>
+
 ---
 layout: end
 ---
@@ -463,6 +473,10 @@ layout: end
 <div>
 
 <br />
+
+<carbon-email /> [joaquin@gatica.dev](mailto:joaquin@gatica.dev)
+
+<br/>
 
 <logos-github-icon /> [https://github.com/joaquingatica](https://github.com/joaquingatica)
 
