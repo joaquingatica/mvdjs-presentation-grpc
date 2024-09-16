@@ -15,26 +15,28 @@ mdc: true
 ---
 
 <h1>
-  <img src="./images/grpc-logo.png" alt="gRPC" style="display: inline; width: 200px;"/> + <img src="./images/nodejs-logo-dark.png" alt="Node.js" style="display: inline; width: 200px;"/>
+  <img src="./images/grpc-logo.svg" alt="gRPC" style="display: inline; width: 200px;"/> + <img src="./images/nodejs-logo-dark.png" alt="Node.js" style="display: inline; width: 200px;"/>
 </h1>
+
+<v-click>
+
+O mejor dicho,
+
+### **¿Tiene sentido gRPC en Node.js?**
+
+</v-click>
+
+<br />
 
 Montevideo JavaScript Meetup - Setiembre 2024
 
-Joaquín Gatica
+> Joaquín Gatica
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
     <carbon:arrow-right class="inline"/>
   </span>
 </div>
-
----
-layout: statement
----
-
-Es decir,
-
-### **¿Vale la pena gRPC en Node.js?**
 
 ---
 layout: image-right
@@ -57,30 +59,152 @@ image: ./images/author.jpg
 <logos-linkedin-icon /> [https://linkedin.com/in/joaquingatica](https://linkedin.com/in/joaquingatica)
 
 ---
-layout: two-cols
-class: text-center
+layout: cover
 ---
 
-<br />
-<img src="./images/grpc-logo.png" alt="gRPC" style="display: inline; width: 200px;"/>
-<br />
-<br />
-<br />
-<img src="./images/protobuf-logo-simple.png" alt="gRPC" style="display: inline; width: 150px;"/>
-<br/>
-Protobuf
+# Agenda
+
+1. Introducción a Protobuf y gRPC
+2. El Problema
+3. Una Solución
+4. Demo / Live Coding
+5. Q&A
+
+---
+layout: two-cols
+---
+
+<div class="flex flex-col flex-justify-between flex-items-center pt-13 pb-10" style="height: 100%">
+  <img src="./images/grpc-logo.svg" alt="gRPC" style="display: inline; width: 200px;"/>
+  <div class="text-center">
+    <img src="./images/protobuf-logo-simple.png" alt="gRPC" style="display: inline; width: 150px;"/>
+    <div style="height: 20px">Protocol Buffers</div>
+  </div>
+</div>
 
 ::right::
 
+<div class="flex flex-col flex-justify-between flex-items-center pt-10 pb-10" style="height: 100%">
+  <img src="./images/nodejs-logo-dark.png" alt="Node.js" style="display: inline; width: 200px;"/>
+  <img src="./images/typescript-logo.png" alt="Node.js" style="display: inline; width: 100px;"/>
+</div>
+
+---
+layout: intro
+---
+
+# 1. Introducción a Protobuf y gRPC
+
+---
+layout: two-cols
+---
+
+# ¿Que es Protobuf?
+
+> Protocol Buffers
+
 <br />
-<br />
-<img src="./images/nodejs-logo-dark.png" alt="Node.js" style="display: inline; width: 200px;"/>
-<br />
-<br />
-<br />
-<br />
-<br />
-<img src="./images/typescript-logo.png" alt="Node.js" style="display: inline; width: 100px;"/>
+
+<v-click>
+
+- Formato de serialización de datos estructurados
+- Multi-plataforma y multi-lenguaje
+- Usa un Interface Definition Language (IDL)
+- Serializa a un wire format hexadecimal
+- Decodificación secuencial
+
+</v-click>
+
+::right::
+
+<div class="text-center">
+  <img src="./images/protobuf-logo-simple.png" alt="gRPC" style="display: inline; width: 100px;"/>
+  <br/>
+  Protocol Buffers
+
+`sample/people/v1/person.proto`
+
+</div>
+
+```protobuf
+syntax = "proto3";
+
+package sample.people.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message Person {
+  string id = 1; // `string`
+  repeated string names = 2; // `string[]`
+  optional Status status = 3; // `Status?`
+  int32 age = 4; // `number`
+  google.protobuf.Timestamp created_at = 5; // `Date`
+}
+
+enum Status {
+  STATUS_UNSPECIFIED = 0;
+  STATUS_ALIVE = 1;
+  STATUS_DEAD = 2;
+}
+```
+
+---
+layout: two-cols
+---
+
+## Ejemplo
+
+<div class="pr-6">
+
+Mensaje original:
+
+```yaml
+id: "71a71e3857976da7cc8dc7d23f480307"
+names:
+  - "Joaquín"
+  - "Gatica"
+status: "STATUS_ALIVE"
+age: 34,
+created_at:
+  - seconds: 1726511388
+  - nanos: 1726511388672
+```
+
+</div>
+
+::right::
+
+<v-click>
+
+_JSON string_ codificado:
+
+```
+7B 0D 0A 20 20 22 69 64 22 3A 20 22 37 31 61 37
+31 65 33 38 35 37 39 37 36 64 61 37 63 63 38 64
+63 37 64 32 33 66 34 38 30 33 30 37 22 2C 0D 0A
+20 20 22 6E 61 6D 65 73 22 3A 20 5B 22 4A 6F 61
+71 75 ED 6E 22 2C 20 22 47 61 74 69 63 61 22 5D
+2C 0D 0A 20 20 22 73 74 61 74 75 73 22 3A 20 22
+53 54 41 54 55 53 5F 41 4C 49 56 45 22 2C 0D 0A
+20 20 22 61 67 65 22 3A 20 33 34 2C 0D 0A 20 20
+22 63 72 65 61 74 65 64 5F 61 74 22 3A 20 7B 0D
+0A 20 20 20 20 22 73 65 63 6F 6E 64 73 22 3A 20
+31 37 32 36 35 31 31 33 38 38 2C 0D 0A 20 20 20
+20 22 6E 61 6E 6F 73 22 3A 20 31 37 32 36 35 31
+31 33 38 38 36 37 32 0D 0A 20 20 7D 0D 0A 7D 00
+```
+
+_Protobuf wire format_ codificado:
+
+```
+0A 20 37 31 61 37 31 65 33 38 35 37 39 37 36 64
+61 37 63 63 38 64 63 37 64 32 33 66 34 38 30 33
+30 37 12 08 4A 6F 61 71 75 C3 AD 6E 12 06 47 61
+74 69 63 61 18 01 20 22 2A 11 08 9C F2 A1 B7 06
+10 80 B0 E4 E0 FF FF FF FF FF 01 00 00 00 00 00
+```
+
+</v-click>
 
 ---
 layout: two-cols
@@ -97,28 +221,32 @@ layout: two-cols
 - Framework de ejecución de procedimientos\
   remotos
 - Multi-plataforma y multi-lenguaje
-- Alta performance
-- Usa HTTP/2 como protocolo de transporte
-- Usa Protocol Buffers (Protobuf) para definición\
-  de schema y encoding/decoding
+- HTTP/2 como protocolo de transporte
+- Protobuf para encoding/decoding
 - Autenticación mediante TLS y tokens en\
   metadata
+
+<br />
+
+#### HTTP/2 + Protobuf = 🚀 **Fast**
 
 </v-click>
 
 ::right::
 
-<br />
+<div class="text-center">
+  <img src="./images/grpc-logo.svg" alt="gRPC" style="display: inline; width: 200px;"/>
 
-<v-click>
-Ejemplo de Protobuf gRPC schema:
+`sample/people/v1/people_service.proto`
+
+</div>
 
 ```protobuf
 syntax = "proto3";
 
 package sample.people.v1;
 
-import "google/protobuf/timestamp.proto";
+import "sample/people/v1/person.proto";
 
 service PeopleService {
   rpc GetPerson(GetPersonRequest) returns (GetPersonResponse) {
@@ -131,38 +259,83 @@ message GetPersonRequest {
 message GetPersonResponse {
   Person person = 1;
 }
-message Person {
-  string id = 1;
-  repeated string names = 2;
-  optional int32 age = 3;
-  google.protobuf.Timestamp created_at = 4;
-}
 ```
-
-</v-click>
 
 ---
 layout: intro
 ---
 
-## ¿Vale la pena gRPC en Node.js?
+# 2. El Problema
 
-Definamos "vale la pena" cómo **ser similar o mejor a las alternativas** como JSON + GraphQL o REST.
+---
+layout: two-cols
+---
+
+<br />
+
+### ¿Tiene sentido gRPC en Node.js?
+
+JavaScript y TypeScript
+
+- **ni aparecen en documentación** de Protobuf
+- **escaso soporte oficial** para gRPC
+
+Node.js
+
+- **second-class citizen** para gRPC
+- **no es un high-performance** runtime
+- **no tiene low-level** types
 
 <br />
 
 <v-click>
 
-### ¿Por qué nos cuestionamos?
+### Pero...
 
+> ...que Node.js no sea el entorno ideal no invalida las ventajas.
+
+</v-click>
+
+::right::
+
+<br />
+
+<div class="text-center pl-10">
+  <img src="./images/protobuf-docs-js.png" alt="gRPC" style="display: inline; width: 100%;"/>
+</div>
+
+<!--
+- JavaScript **ni aparece** en documentación oficial de protobuf
+- TypeScript **muy poca mención** en a la documentación oficial de gRPC
 - Node.js **es second-class citizen** para Protobuf y gRPC
-  - A diferencia de JSON + GraphQL o REST
-  - Baja prioridad en la documentación oficial
-- TypeScript tiene **aún menos relevancia** para gRPC
-  - Muy poca mención en a la documentación oficial
 - Node.js **no es un high-performance runtime**
   - Para encoding/decoding al menos
   - A diferencia de C++, Rust o Go
+- Se pierden ventajas de tipos de bajo nivel
+  - `int32`, `uint64`, `fixed64` -> `number`
+-->
+
+---
+layout: fact
+---
+
+<v-click>
+
+## Entonces... ¿tiene sentido?
+
+</v-click>
+
+<v-click>
+
+<br />
+
+**Tiene sentido si resulta ser igual o mejor que las alternativas.**
+
+</v-click>
+
+<v-click>
+
+(HTTP/1 + JSON + REST o GraphQL)
 
 </v-click>
 
@@ -184,7 +357,7 @@ Para un cliente existente, nos pidieron crear un servicio nuevo para notificacio
 <br />
 <br />
 
-<v-click><strong>Buena oportunidad para explorar gRPC, evaluando:</strong></v-click>
+<v-click><strong>Buena oportunidad para explorar gRPC. Criterios:</strong></v-click>
 
 <br />
 
@@ -271,6 +444,12 @@ const service = {
 ```
 
 </div>
+
+---
+layout: intro
+---
+
+# 3. Una Solución
 
 ---
 layout: two-cols
@@ -418,7 +597,7 @@ $ grpcui -plaintext localhost:50051
 layout: intro
 ---
 
-# Demo
+# Demo / Live Coding
 
 <logos-github-icon /> https://github.com/joaquingatica/ts-grpc-demo
 
@@ -436,9 +615,9 @@ layout: intro
 
 # Conclusión
 
-gRPC en Node.js **vale la pena** si:
+gRPC en Node.js **tiene sentido** si:
 
-<v-click>- Tanto cliente como servidor son servicios </v-click><v-click><twemoji-check-mark-button /></v-click>
+<v-click>- Tanto cliente como servidor son servicios backend </v-click><v-click><twemoji-check-mark-button /></v-click>
 
 <br />
 
@@ -446,7 +625,7 @@ gRPC en Node.js **vale la pena** si:
 
 <br />
 
-<v-click>- La curva de aprendizaje es aceptable </v-click><v-click><twemoji-check-mark-button /></v-click>
+<v-click>- La curva de aprendizaje es aceptable para el equipo </v-click><v-click><twemoji-check-mark-button /></v-click>
 
 ---
 layout: intro
