@@ -17,3 +17,8 @@ Slidev reference: [documentation](https://sli.dev/)
 - Run `npm run build`
 - Check the `./dist` folder for the built static assets
 - Deploy accordingly
+
+## Related Resources
+
+- Deployed version: [https://mvdjs-presentation-grpc.vercel.app](https://mvdjs-presentation-grpc.vercel.app)
+- Demo repository: [joaquingatica/ts-grpc-demo](https://github.com/joaquingatica/ts-grpc-demo)
