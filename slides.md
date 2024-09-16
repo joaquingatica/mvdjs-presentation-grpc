@@ -39,8 +39,7 @@ Montevideo JavaScript Meetup - Setiembre 2024
 </div>
 
 ---
-layout: image-right
-image: ./images/author.jpg
+layout: two-cols
 ---
 
 # ¿Quién soy?
@@ -57,6 +56,12 @@ image: ./images/author.jpg
 <br/>
 
 <logos-linkedin-icon /> [https://linkedin.com/in/joaquingatica](https://linkedin.com/in/joaquingatica)
+
+::right::
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <img src="./images/author.jpg" style="display: inline; width: 400px" alt="Author image" />
+</div>
 
 ---
 layout: cover
@@ -574,8 +579,7 @@ layout: two-cols
 </v-click>
 
 ---
-layout: image-right
-image: ./images/grpcui-screenshot.png
+layout: two-cols
 ---
 
 # gRPC GUI
@@ -592,6 +596,12 @@ image: ./images/grpcui-screenshot.png
 ```shell
 $ grpcui -plaintext localhost:50051
 ```
+
+::right::
+
+<div class="text-center">
+  <img src="./images/grpcui-screenshot.png" style="display: inline; width: 400px">
+</div>
 
 ---
 layout: intro
