@@ -98,7 +98,7 @@ layout: two-cols
 layout: intro
 ---
 
-# 1. Introducción a Protobuf y gRPC
+# 1. Introducción a<br />Protobuf y gRPC
 
 ---
 layout: two-cols
@@ -199,6 +199,10 @@ _JSON string_ codificado:
 31 33 38 38 36 37 32 0D 0A 20 20 7D 0D 0A 7D 00
 ```
 
+</v-click>
+
+<v-click>
+
 _Protobuf wire format_ codificado:
 
 ```
@@ -232,6 +236,10 @@ layout: two-cols
   metadata
 
 <br />
+
+</v-click>
+
+<v-click>
 
 #### HTTP/2 + Protobuf = 🚀 **Fast**
 
@@ -354,15 +362,20 @@ Para un cliente existente, nos pidieron crear un servicio nuevo para notificacio
 
 - Exclusivamente Machine-to-Machine
 - No crítico para negocio, pero usado desde otros servicios críticos
-- Alta demanda de requests
-- Bajo riesgo
+- Alta demanda de requests pero bajo riesgo
+- No se anticipó frecuencia de cambios
 
 </v-click>
 
 <br />
 <br />
 
-<v-click><strong>Buena oportunidad para explorar gRPC. Criterios:</strong></v-click>
+<v-click><strong>Buena oportunidad para explorar gRPC.</strong></v-click>
+
+<br />
+<br />
+
+<v-click>Criterios:</v-click>
 
 <br />
 
@@ -376,17 +389,21 @@ Para un cliente existente, nos pidieron crear un servicio nuevo para notificacio
 
 <v-click>- Developer Experience </v-click><v-click><twemoji-white-question-mark /></v-click>
 
+<br />
+
+<v-click>- Mantenibilidad </v-click><v-click><twemoji-white-question-mark /></v-click>
+
 ---
 layout: two-cols
 ---
 
-## Developer Experience
+## Criterios DX y Mantenibilidad
 
-- Promises - `async`/`await`
-- Tipos primitivos en lugar de clases
 - End-to-end type safety
 - Curva de aprendizaje aceptable
 - Ecosistema de librerías
+- Promises - `async`/`await`
+- Tipos primitivos en lugar de clases
 
 <br />
 
@@ -582,20 +599,32 @@ layout: two-cols
 layout: two-cols
 ---
 
+# Reflection
+
+`gRPCurl`: CLI para interactuar con servicios gRPC
+
+```shell
+$ grpcurl -plaintext -use-reflection localhost:50051 describe
+```
+
+<logos-github-icon /> [fullstorydev/grpcurl](https://github.com/fullstorydev/grpcurl)
+
+<br />
+<br />
+<br />
+
 # gRPC GUI
 
 `gRPC UI`: interfaz web para interactuar con servicios gRPC
 
-<br />
+```shell
+$ grpcui -plaintext localhost:50051
+```
 
 <logos-github-icon /> [fullstorydev/grpcui](https://github.com/fullstorydev/grpcui)
 
 <br />
 <br />
-
-```shell
-$ grpcui -plaintext localhost:50051
-```
 
 ::right::
 
