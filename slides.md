@@ -613,7 +613,7 @@ $ grpcurl -plaintext -use-reflection localhost:50051 describe
 <br />
 <br />
 
-# gRPC GUI
+# GUI Client
 
 `gRPC UI`: interfaz web para interactuar con servicios gRPC
 
