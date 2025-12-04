@@ -692,7 +692,7 @@ layout: end
 
 <br />
 
-<carbon-email /> [joaquin@gatica.dev](mailto:joaquin@gatica.dev)
+<carbon-email /> [me@joaquingatica.com](mailto:me@joaquingatica.com)
 
 <br/>
 
