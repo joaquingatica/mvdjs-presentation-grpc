@@ -1,4 +1,4 @@
-# gRPC Presentation - Montevideo JavaScript
+# gRPC Presentation - Uruguay JavaScript
 
 ## Setup
 
@@ -20,5 +20,5 @@ Slidev reference: [documentation](https://sli.dev/)
 
 ## Related Resources
 
-- Deployed version: [https://mvdjs-presentation-grpc.vercel.app](https://mvdjs-presentation-grpc.vercel.app)
+- Deployed version: [https://uyjs-presentation-grpc.vercel.app](https://uyjs-presentation-grpc.vercel.app)
 - Demo repository: [joaquingatica/ts-grpc-demo](https://github.com/joaquingatica/ts-grpc-demo)

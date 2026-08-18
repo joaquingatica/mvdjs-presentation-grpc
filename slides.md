@@ -674,9 +674,9 @@ layout: intro
 
 <div>
 
-Repositorio: <logos-github-icon /> [joaquingatica/mvdjs-presentation-grpc](https://github.com/joaquingatica/mvdjs-presentation-grpc)
+Repositorio: <logos-github-icon /> [joaquingatica/uyjs-presentation-grpc](https://github.com/joaquingatica/uyjs-presentation-grpc)
 
-Presentación: <carbon-earth-filled /> [https://mvdjs-presentation-grpc.vercel.app](https://mvdjs-presentation-grpc.vercel.app)
+Presentación: <carbon-earth-filled /> [https://uyjs-presentation-grpc.vercel.app](https://uyjs-presentation-grpc.vercel.app)
 
 <img src="./images/qr-presentation.png" alt="Código QR presentación" />
 
